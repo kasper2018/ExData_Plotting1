@@ -11,6 +11,7 @@ data$Date <- dmy(data$Date, tz="Europe/Berlin")
 data$Time <- hms(data$Time)
 
 ## Only select complete cases in relevant timeframe (we assume it is Y/M/D as provided on Coursera, not clear)
+#Edit: now we know this is the right method
 select.data <- subset(data,Date >= as.Date("2007-2-1") & Date <= as.Date("2007-2-2"))
 select.data <- select.data[complete.cases(select.data),]
 
@@ -37,7 +38,7 @@ legend("topright", col=c("black", "red", "blue"), lwd=c(1,1,1), c("Sub metering 
 ## Plot 4
 
 #create matrix for plots
-par(mfrow=c(2,2), mar=c(4,4,2,1), oma=c(0,0,2,0))
+par(mfrow=c(2,2))
 
 with(select.data, {
   plot(Global_active_power ~ timeseries, type="l", ylab="Global Active Power (kW)", xlab="")
